@@ -1,0 +1,20 @@
+local RunService = game:GetService("RunService")
+
+local function createEspBox()
+    for i, chit in ipairs(workspace:GetDescendants()) do
+        if chit:FindFirstChild("Humanoid") and not chit:FindFirstChild("EspBox") and chit ~= game.Players.LocalPlayer.Character then
+            local esp = Instance.new("BoxHandleAdornment", chit)
+            esp.Adornee = chit
+            esp.ZIndex = 0
+            esp.Size = Vector3.new(4, 5, 1)
+            esp.Transparency = 0.65
+            esp.Color3 = Color3.fromRGB(255, 48, 48)
+            esp.AlwaysOnTop = true
+            esp.Name = "EspBox"
+        end
+    end
+end
+
+RunService.RenderStepped:Connect(function(deltaTime)
+    createEspBox()
+end)
